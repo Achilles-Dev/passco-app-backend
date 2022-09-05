@@ -1,11 +1,6 @@
 class UserDatum < ApplicationRecord
   belongs_to :user
 
-  validates :validate_data
-
-  private
-
-  def validate_data
-    errors.add(:options, :invalid) unless options.is_a?(Array)
-  end
+  validates :subject, presence: true
+  validates :score, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: BigDecimal(101) }
 end
