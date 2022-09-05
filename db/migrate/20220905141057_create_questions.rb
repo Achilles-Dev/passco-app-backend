@@ -9,7 +9,7 @@ class CreateQuestions < ActiveRecord::Migration[7.0]
       t.timestamps
     end
     add_index :questions, :year
-    add_index :questions, :question_id
+    add_index :questions, :subject_id
     add_foreign_key :questions, :subjects, column: :subject_id
   end
 end

@@ -24,13 +24,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_150821) do
   end
 
   create_table "questions", force: :cascade do |t|
+    t.integer "subject_id"
     t.string "year"
     t.integer "question_no"
     t.text "content"
     t.text "options", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["subject_id"], name: "index_questions_on_subject_id"
     t.index ["year"], name: "index_questions_on_year"
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string "name"
+    t.integer "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_data", force: :cascade do |t|
@@ -50,5 +59,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_150821) do
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "questions", "subjects"
   add_foreign_key "user_data", "users"
 end
