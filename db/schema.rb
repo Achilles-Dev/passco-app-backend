@@ -25,16 +25,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_150821) do
 
   create_table "questions", force: :cascade do |t|
     t.string "year"
-    t.integer "questionno"
+    t.integer "question_no"
     t.text "content"
     t.text "options", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["year"], name: "index_questions_on_year"
   end
 
   create_table "user_data", force: :cascade do |t|
     t.integer "user_id"
-    t.text "data", default: [], array: true
+    t.string "subject"
+    t.integer "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_data_on_user_id"
