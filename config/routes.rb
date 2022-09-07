@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   scope :api do
     resources :users, only: [:index, :show]
     resources :questions
+    resources :answers
+    resources :user_data, except: [:update]
   end
 end
