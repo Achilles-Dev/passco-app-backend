@@ -13,7 +13,7 @@ class SubjectsController < ApplicationController
     if subject.save!
       render json: subject, status: :ok
     else
-      render json: { errors: 'Subject could not be saved'}, status: :unprocessable_entity
+      render json: { errors: 'Subject could not be saved' }, status: :unprocessable_entity
     end
   end
 

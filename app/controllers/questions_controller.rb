@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_subject, only: %i[index create]
-  
+
   def index
     questions = Question.where(year: params[:year], subject: @subject)
     render json: questions
