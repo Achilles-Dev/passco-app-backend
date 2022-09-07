@@ -1,6 +1,8 @@
 class QuestionsController < ApplicationController
+  before_action :set_subject, only: %i[index create]
+  
   def index
-    questions = Question.find_by(year: params[:year], subject_id: params[:subject_id])
+    questions = Question.where(year: params[:year], subject: @subject)
     render json: questions
   end
 
@@ -9,7 +11,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    question = Question.new(question_params)
+    question = Question.new(question_params.merge(subject: @subject))
     if question.save!
       render json: question, status: :ok
     else
@@ -48,7 +50,11 @@ class QuestionsController < ApplicationController
 
   private
 
+  def set_subject
+    @subject = Subject.find(params[:subject_id])
+  end
+
   def question_params
-    params.require('questions').permit(:subject_id, :year, :question_no, :content, :options)
+    params.require('questions').permit(:year, :question_no, :content, :options)
   end
 end

@@ -15,6 +15,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_150821) do
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
+    t.integer "subject_id"
+    t.string "year"
     t.integer "question_id"
     t.integer "answer_no"
     t.string "value"
