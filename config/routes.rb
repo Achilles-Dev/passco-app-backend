@@ -4,10 +4,13 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  scope :api do
-    resources :users, only: [:index, :show]
-    resources :questions
-    resources :answers
-    resources :user_data, except: [:update]
+  namespace :v1 do
+    namespace :api do
+      resources :users, only: [:index, :show]
+      resources :questions
+      resources :answers
+      resources :user_data, except: [:update]
+      resources :subjects
+    end
   end
 end
