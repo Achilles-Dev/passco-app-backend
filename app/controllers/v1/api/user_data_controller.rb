@@ -1,4 +1,4 @@
-class UserDataController < ApplicationController
+class V1::Api::UserDataController < ApplicationController
   before_action :set_user, only: [:create]
 
   def index

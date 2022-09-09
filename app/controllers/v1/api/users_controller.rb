@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class V1::Api::UsersController < ApplicationController
   def index
     users = User.all
     render json: users, status: :ok
