@@ -32,10 +32,9 @@ RSpec.describe 'Questions', type: :request do
               question_no: { type: :integer },
               content: { type: :string },
               options: { type: :array,
-                items: {
-                  type: :string
-                }
-              }
+                         items: {
+                           type: :string
+                         } }
             }
           }
         }

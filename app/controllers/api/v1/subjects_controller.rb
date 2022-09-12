@@ -49,6 +49,6 @@ class Api::V1::SubjectsController < ApplicationController
   private
 
   def subject_params
-    params.require('subject').permit(:name, :code)
+    params.require('subjects').permit(:name, :code)
   end
 end

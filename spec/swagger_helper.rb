@@ -28,7 +28,7 @@ RSpec.configure do |config|
             bearerFormat: JWT
           }
         }
-      }, 
+      },
       servers: [
         {
           url: 'http://{defaultHost}',

@@ -2,7 +2,6 @@ require 'swagger_helper'
 
 RSpec.describe 'Subject', type: :request do
   path '/api/v1/subjects' do
-
     get 'Gets all subjects' do
       security [Bearer: []]
       response(200, 'successful') do
