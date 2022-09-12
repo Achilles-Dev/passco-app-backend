@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject { User.create!(username: 'Solomon', email: 'test@test.com', password: '123456') }
+  subject { User.new(username: 'Solomon', email: 'test@test.com', password: '123456') }
 
   it 'username must not be blank' do
     subject.username = nil

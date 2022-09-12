@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AccessToken, type: :model do
-  user = User.create!(username: 'Solomon', email: 'test@test.com', password: '123456')
+  user = User.new(username: 'Solomon2', email: 'test2@test.com', password: '123456')
 
   token = user.generate_jwt
 
