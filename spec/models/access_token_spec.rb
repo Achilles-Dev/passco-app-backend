@@ -5,7 +5,7 @@ RSpec.describe AccessToken, type: :model do
 
   token = user.generate_jwt
 
-  subject { AccessToken.create!(token:, user:)}
+  subject { AccessToken.create!(token:, user:) }
 
   it 'token must not be blank' do
     subject.token = nil
