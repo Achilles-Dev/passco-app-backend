@@ -78,11 +78,15 @@ paths:
         type: integer
     get:
       summary: show question
+      security:
+      - Bearer: []
       responses:
         '200':
           description: successful
     patch:
       summary: update question
+      security:
+      - Bearer: []
       parameters: []
       responses:
         '200':
@@ -121,6 +125,8 @@ paths:
                       type: integer
     put:
       summary: update question
+      security:
+      - Bearer: []
       parameters: []
       responses:
         '200':
@@ -159,6 +165,8 @@ paths:
                       type: integer
     delete:
       summary: delete question
+      security:
+      - Bearer: []
       responses:
         '200':
           description: successful
@@ -250,6 +258,140 @@ paths:
               required:
               - email
               - password
+  "/api/v1/subjects":
+    get:
+      summary: Gets all subjects
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: Create a subject
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subjects:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    code:
+                      type: integer
+          application/xml:
+            schema:
+              type: object
+              properties:
+                subjects:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    code:
+                      type: integer
+  "/api/v1/subjects/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show subject
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update subject
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subjects:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    code:
+                      type: integer
+          application/xml:
+            schema:
+              type: object
+              properties:
+                subjects:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    code:
+                      type: integer
+    put:
+      summary: update subject
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subjects:
+                  type: object
+                  properties:
+                    year:
+                      type: string
+                    subject_no:
+                      type: integer
+                    content:
+                      type: string
+                    options:
+                      type: integer
+          application/xml:
+            schema:
+              type: object
+              properties:
+                subjects:
+                  type: object
+                  properties:
+                    year:
+                      type: string
+                    subject_no:
+                      type: integer
+                    content:
+                      type: string
+                    options:
+                      type: integer
+    delete:
+      summary: delete subject
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
 components:
   securitySchemes:
     bearerAuth:
