@@ -21,19 +21,4 @@ RSpec.describe User, type: :model do
   it 'password must be valid' do
     expect(subject.valid_password?('123456')).to be_truthy
   end
-
-  # it 'code must be an integer' do
-  #   subject.code = '3'
-  #   expect(subject).to_not be_valid
-  # end
-
-  # it 'code must be between 100 and 1000' do
-  #   subject.code = 1800
-  #   expect(subject).to_not be_valid
-  # end
-
-  # it 'code must be between 100 and 1000' do
-  #   subject.code = 99
-  #   expect(subject).to_not be_valid
-  # end
 end
