@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_12_152304) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_12_161445) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "access_tokens", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_access_tokens_on_user_id"
+  end
 
   create_table "answers", force: :cascade do |t|
     t.integer "subject_id"
@@ -72,6 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_12_152304) do
     t.index ["username"], name: "index_users_on_username"
   end
 
+  add_foreign_key "access_tokens", "users"
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "subjects"
   add_foreign_key "user_data", "users"
