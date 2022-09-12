@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Question, type: :model do
   subject = Subject.create!(name: 'English Language', code: 302)
   question = Question.create!(year: 2022, question_no: 1, content: 'This is the first question.',
-                          options: ['true' , 'false'], subject: subject)
+                              options: %w[true false], subject:)
 
   it 'year must not be blank' do
     question.year = nil
