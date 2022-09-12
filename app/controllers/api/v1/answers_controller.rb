@@ -1,5 +1,5 @@
 class Api::V1::AnswersController < ApplicationController
-  before_action :set_question, :set_subject, only: %i[index create]
+  before_action :authenticate_user!, :set_question, :set_subject, only: %i[index create]
 
   def index
     answers = Answer.find_by(question: @question, subject: @subject)
