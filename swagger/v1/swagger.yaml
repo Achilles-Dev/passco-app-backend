@@ -4,6 +4,164 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/questions":
+    parameters:
+    - name: subject_id
+      in: query
+      description: subject_id
+      schema:
+        type: integer
+    get:
+      summary: Gets all questions
+      security:
+      - Bearer: []
+      parameters:
+      - name: year
+        in: query
+        description: year
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: Create a question
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                questions:
+                  type: object
+                  properties:
+                    year:
+                      type: string
+                    question_no:
+                      type: integer
+                    content:
+                      type: string
+                    options:
+                      type: array
+                      items:
+                        type: string
+          application/xml:
+            schema:
+              type: object
+              properties:
+                questions:
+                  type: object
+                  properties:
+                    year:
+                      type: string
+                    question_no:
+                      type: integer
+                    content:
+                      type: string
+                    options:
+                      type: array
+                      items:
+                        type: string
+  "/api/v1/questions/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show question
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update question
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                questions:
+                  type: object
+                  properties:
+                    year:
+                      type: string
+                    question_no:
+                      type: integer
+                    content:
+                      type: string
+                    options:
+                      type: integer
+          application/xml:
+            schema:
+              type: object
+              properties:
+                questions:
+                  type: object
+                  properties:
+                    year:
+                      type: string
+                    question_no:
+                      type: integer
+                    content:
+                      type: string
+                    options:
+                      type: integer
+    put:
+      summary: update question
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                questions:
+                  type: object
+                  properties:
+                    year:
+                      type: string
+                    question_no:
+                      type: integer
+                    content:
+                      type: string
+                    options:
+                      type: integer
+          application/xml:
+            schema:
+              type: object
+              properties:
+                questions:
+                  type: object
+                  properties:
+                    year:
+                      type: string
+                    question_no:
+                      type: integer
+                    content:
+                      type: string
+                    options:
+                      type: integer
+    delete:
+      summary: delete question
+      responses:
+        '200':
+          description: successful
   "/api/users":
     post:
       summary: Creates user with a token
@@ -92,6 +250,12 @@ paths:
               required:
               - email
               - password
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 servers:
 - url: http://{defaultHost}
   variables:
