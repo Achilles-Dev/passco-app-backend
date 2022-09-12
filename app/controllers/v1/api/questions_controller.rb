@@ -55,6 +55,6 @@ class V1::Api::QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require('questions').permit(:year, :question_no, :content, :options)
+    params.require('questions').permit(:year, :question_no, :content, options: [])
   end
 end
