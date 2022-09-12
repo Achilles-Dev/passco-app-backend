@@ -1,4 +1,4 @@
-class V1::Api::QuestionsController < ApplicationController
+class Api::V1::QuestionsController < ApplicationController
   before_action :set_subject, only: %i[index create]
 
   def index

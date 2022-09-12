@@ -1,4 +1,4 @@
-class V1::Api::SubjectsController < ApplicationController
+class Api::V1::SubjectsController < ApplicationController
   def index
     subjects = Subject.all
     render json: subjects, status: :ok
