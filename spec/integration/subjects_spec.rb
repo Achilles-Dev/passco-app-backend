@@ -103,10 +103,8 @@ RSpec.describe 'Subject', type: :request do
           subjects: {
             type: :object,
             properties: {
-              year: { type: :string },
-              subject_no: { type: :integer },
-              content: { type: :string },
-              options: { type: :integer }
+              name: { type: :string },
+              code: { type: :integer }
             }
           }
         }

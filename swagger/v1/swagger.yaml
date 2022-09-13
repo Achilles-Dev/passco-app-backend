@@ -362,13 +362,9 @@ paths:
                 subjects:
                   type: object
                   properties:
-                    year:
+                    name:
                       type: string
-                    subject_no:
-                      type: integer
-                    content:
-                      type: string
-                    options:
+                    code:
                       type: integer
           application/xml:
             schema:
@@ -377,16 +373,126 @@ paths:
                 subjects:
                   type: object
                   properties:
-                    year:
+                    name:
                       type: string
-                    subject_no:
-                      type: integer
-                    content:
-                      type: string
-                    options:
+                    code:
                       type: integer
     delete:
       summary: delete subject
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+  "/api/v1/users":
+    parameters:
+    - name: subject_id
+      in: query
+      description: subject_id
+      schema:
+        type: integer
+    get:
+      summary: Gets all users
+      security:
+      - Bearer: []
+      parameters:
+      - name: year
+        in: query
+        description: year
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+  "/api/v1/users/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show user
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update user
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+          application/xml:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+    put:
+      summary: update question
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+          application/xml:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+    delete:
+      summary: delete user
       security:
       - Bearer: []
       responses:
@@ -398,6 +504,7 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+      name: Authorization
 servers:
 - url: http://{defaultHost}
   variables:

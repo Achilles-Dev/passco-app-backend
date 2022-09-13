@@ -25,7 +25,8 @@ RSpec.configure do |config|
           bearerAuth: {
             type: 'http',
             scheme: 'bearer',
-            bearerFormat: JWT
+            bearerFormat: 'JWT',
+            name: 'Authorization'
           }
         }
       },

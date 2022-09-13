@@ -4,7 +4,7 @@ RSpec.describe 'Users', type: :request do
   path '/api/v1/users' do
     parameter name: 'subject_id', in: :query, type: :integer, description: 'subject_id'
 
-    get 'Gets all questions' do
+    get 'Gets all users' do
       security [Bearer: []]
       parameter name: 'year', in: :query, type: :integer, description: 'year'
       response(200, 'successful') do
@@ -18,44 +18,12 @@ RSpec.describe 'Users', type: :request do
         run_test!
       end
     end
-
-    post('Create a question') do
-      consumes 'application/json', 'application/xml'
-      security [Bearer: []]
-      parameter name: :questions, in: :body, schema: {
-        type: :object,
-        properties: {
-          questions: {
-            type: :object,
-            properties: {
-              year: { type: :string },
-              question_no: { type: :integer },
-              content: { type: :string },
-              options: { type: :array,
-                         items: {
-                           type: :string
-                         } }
-            }
-          }
-        }
-      }
-      response(200, 'successful') do
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
   end
 
-  path '/api/v1/questions/{id}' do
+  path '/api/v1/users/{id}' do
     parameter name: 'id', in: :path, type: :integer, description: 'id'
 
-    get('show question') do
+    get('show user') do
       security [Bearer: []]
       response(200, 'successful') do
         let(:id) { '123' }
@@ -70,19 +38,18 @@ RSpec.describe 'Users', type: :request do
       end
     end
 
-    patch('update question') do
+    patch('update user') do
       security [Bearer: []]
       consumes 'application/json', 'application/xml'
       parameter name: :questions, in: :body, schema: {
         type: :object,
         properties: {
-          questions: {
+          user: {
             type: :object,
             properties: {
-              year: { type: :string },
-              question_no: { type: :integer },
-              content: { type: :string },
-              options: { type: :integer }
+              username: { type: :string },
+              email: { type: :string },
+              password: { type: :string }
             }
           }
         }
@@ -101,7 +68,7 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  path '/api/v1/questions/{id}' do
+  path '/api/v1/users/{id}' do
     parameter name: 'id', in: :path, type: :integer, description: 'id'
 
     put('update question') do
@@ -110,13 +77,12 @@ RSpec.describe 'Users', type: :request do
       parameter name: :questions, in: :body, schema: {
         type: :object,
         properties: {
-          questions: {
+          user: {
             type: :object,
             properties: {
-              year: { type: :string },
-              question_no: { type: :integer },
-              content: { type: :string },
-              options: { type: :integer }
+              username: { type: :string },
+              email: { type: :string },
+              password: { type: :string }
             }
           }
         }
@@ -134,7 +100,7 @@ RSpec.describe 'Users', type: :request do
       end
     end
 
-    delete('delete question') do
+    delete('delete user') do
       security [Bearer: []]
       response(200, 'successful') do
         let(:id) { '123' }
