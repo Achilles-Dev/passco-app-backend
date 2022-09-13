@@ -24,9 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_12_161445) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "subject_id"
-    t.string "year"
     t.integer "question_id"
-    t.integer "answer_no"
     t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

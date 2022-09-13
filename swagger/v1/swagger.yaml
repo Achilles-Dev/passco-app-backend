@@ -4,6 +4,155 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/answers":
+    parameters:
+    - name: subject_id
+      in: query
+      description: subject_id
+      schema:
+        type: integer
+    - name: question_id
+      in: query
+      description: question_id
+      schema:
+        type: integer
+    get:
+      summary: Gets all answers
+      tags:
+      - Answers
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: Creates an answer
+      tags:
+      - Answers
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                answers:
+                  type: object
+                  properties:
+                    answer_no:
+                      type: integer
+                    value:
+                      type: string
+          application/xml:
+            schema:
+              type: object
+              properties:
+                answers:
+                  type: object
+                  properties:
+                    answer_no:
+                      type: integer
+                    value:
+                      type: string
+  "/api/v1/answers/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: shows answer
+      tags:
+      - Answers
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: updates answer
+      tags:
+      - Answers
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                answers:
+                  type: object
+                  properties:
+                    answer_no:
+                      type: integer
+                    value:
+                      type: string
+          application/xml:
+            schema:
+              type: object
+              properties:
+                answers:
+                  type: object
+                  properties:
+                    answer_no:
+                      type: integer
+                    value:
+                      type: string
+    put:
+      summary: updates answer
+      tags:
+      - Answers
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                answers:
+                  type: object
+                  properties:
+                    answer_no:
+                      type: integer
+                    value:
+                      type: string
+          application/xml:
+            schema:
+              type: object
+              properties:
+                answers:
+                  type: object
+                  properties:
+                    answer_no:
+                      type: integer
+                    value:
+                      type: string
+    delete:
+      summary: deletes answer
+      tags:
+      - Answers
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
   "/api/v1/questions":
     parameters:
     - name: subject_id
@@ -40,10 +189,38 @@ paths:
         content:
           application/json:
             schema:
-              "$ref": "../schemas.json"
+              type: object
+              properties:
+                questions:
+                  type: object
+                  properties:
+                    year:
+                      type: string
+                    question_no:
+                      type: integer
+                    content:
+                      type: string
+                    options:
+                      type: array
+                      items:
+                        type: string
           application/xml:
             schema:
-              "$ref": "../schemas.json"
+              type: object
+              properties:
+                questions:
+                  type: object
+                  properties:
+                    year:
+                      type: string
+                    question_no:
+                      type: integer
+                    content:
+                      type: string
+                    options:
+                      type: array
+                      items:
+                        type: string
   "/api/v1/questions/{id}":
     parameters:
     - name: id
