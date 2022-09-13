@@ -3,6 +3,7 @@ require 'swagger_helper'
 RSpec.describe 'Subject', type: :request do
   path '/api/v1/subjects' do
     get 'Gets all subjects' do
+      tags 'Subjects'
       security [Bearer: []]
       response(200, 'successful') do
         after do |example|
@@ -19,6 +20,7 @@ RSpec.describe 'Subject', type: :request do
     post('Create a subject') do
       consumes 'application/json', 'application/xml'
       security [Bearer: []]
+      tags 'Subjects'
       parameter name: :subjects, in: :body, schema: {
         type: :object,
         properties: {
@@ -49,6 +51,7 @@ RSpec.describe 'Subject', type: :request do
 
     get('show subject') do
       security [Bearer: []]
+      tags 'Subjects'
       response(200, 'successful') do
         let(:id) { '123' }
         after do |example|
@@ -64,6 +67,7 @@ RSpec.describe 'Subject', type: :request do
 
     patch('update subject') do
       security [Bearer: []]
+      tags 'Subjects'
       consumes 'application/json', 'application/xml'
       parameter name: :subjects, in: :body, schema: {
         type: :object,
@@ -96,6 +100,7 @@ RSpec.describe 'Subject', type: :request do
 
     put('update subject') do
       security [Bearer: []]
+      tags 'Subjects'
       consumes 'application/json', 'application/xml'
       parameter name: :subjects, in: :body, schema: {
         type: :object,
@@ -124,6 +129,7 @@ RSpec.describe 'Subject', type: :request do
 
     delete('delete subject') do
       security [Bearer: []]
+      tags 'Subjects'
       response(200, 'successful') do
         let(:id) { '123' }
         after do |example|

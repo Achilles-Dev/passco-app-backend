@@ -1,6 +1,6 @@
 class Api::V1::SubjectsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     subjects = Subject.all
     render json: subjects, status: :ok

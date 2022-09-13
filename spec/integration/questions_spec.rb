@@ -5,6 +5,7 @@ RSpec.describe 'Questions', type: :request do
     parameter name: 'subject_id', in: :query, type: :integer, description: 'subject_id'
 
     get 'Gets all questions' do
+      tags 'Questions'
       security [Bearer: []]
       parameter name: 'year', in: :query, type: :integer, description: 'year'
       response(200, 'successful') do
@@ -19,9 +20,10 @@ RSpec.describe 'Questions', type: :request do
       end
     end
 
-    post('Create a question') do
-      consumes 'application/json', 'application/xml'
+    post 'Create a question' do
+      tags 'Questions'
       security [Bearer: []]
+      consumes 'application/json', 'application/xml'
       parameter name: :questions, in: :body, schema: {
         type: :object,
         properties: {
@@ -55,7 +57,8 @@ RSpec.describe 'Questions', type: :request do
   path '/api/v1/questions/{id}' do
     parameter name: 'id', in: :path, type: :integer, description: 'id'
 
-    get('show question') do
+    get 'show question' do
+      tags 'Questions'
       security [Bearer: []]
       response(200, 'successful') do
         let(:id) { '123' }
@@ -70,7 +73,8 @@ RSpec.describe 'Questions', type: :request do
       end
     end
 
-    patch('update question') do
+    patch 'update question' do
+      tags 'Questions'
       security [Bearer: []]
       consumes 'application/json', 'application/xml'
       parameter name: :questions, in: :body, schema: {
@@ -104,7 +108,8 @@ RSpec.describe 'Questions', type: :request do
   path '/api/v1/questions/{id}' do
     parameter name: 'id', in: :path, type: :integer, description: 'id'
 
-    put('update question') do
+    put 'update question' do
+      tags 'Questions'
       security [Bearer: []]
       consumes 'application/json', 'application/xml'
       parameter name: :questions, in: :body, schema: {
@@ -134,7 +139,8 @@ RSpec.describe 'Questions', type: :request do
       end
     end
 
-    delete('delete question') do
+    delete 'delete question' do
+      tags 'Questions'
       security [Bearer: []]
       response(200, 'successful') do
         let(:id) { '123' }

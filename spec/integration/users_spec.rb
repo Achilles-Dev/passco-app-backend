@@ -2,11 +2,9 @@ require 'swagger_helper'
 
 RSpec.describe 'Users', type: :request do
   path '/api/v1/users' do
-    parameter name: 'subject_id', in: :query, type: :integer, description: 'subject_id'
-
     get 'Gets all users' do
       security [Bearer: []]
-      parameter name: 'year', in: :query, type: :integer, description: 'year'
+      tags 'Users'
       response(200, 'successful') do
         after do |example|
           example.metadata[:response][:content] = {
@@ -25,6 +23,7 @@ RSpec.describe 'Users', type: :request do
 
     get('show user') do
       security [Bearer: []]
+      tags 'Users'
       response(200, 'successful') do
         let(:id) { '123' }
         after do |example|
@@ -40,6 +39,7 @@ RSpec.describe 'Users', type: :request do
 
     patch('update user') do
       security [Bearer: []]
+      tags 'Users'
       consumes 'application/json', 'application/xml'
       parameter name: :questions, in: :body, schema: {
         type: :object,
@@ -71,7 +71,8 @@ RSpec.describe 'Users', type: :request do
   path '/api/v1/users/{id}' do
     parameter name: 'id', in: :path, type: :integer, description: 'id'
 
-    put('update question') do
+    put('update user') do
+      tags 'Users'
       security [Bearer: []]
       consumes 'application/json', 'application/xml'
       parameter name: :questions, in: :body, schema: {
@@ -102,6 +103,7 @@ RSpec.describe 'Users', type: :request do
 
     delete('delete user') do
       security [Bearer: []]
+      tags 'Users'
       response(200, 'successful') do
         let(:id) { '123' }
         after do |example|
