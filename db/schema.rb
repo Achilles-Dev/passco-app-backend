@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_12_161445) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_13_143802) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,6 +43,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_12_161445) do
     t.index ["year"], name: "index_questions_on_year"
   end
 
+  create_table "subject_user_data", force: :cascade do |t|
+    t.integer "subject_id"
+    t.integer "user_datum_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subject_id"], name: "index_subject_user_data_on_subject_id"
+    t.index ["user_datum_id"], name: "index_subject_user_data_on_user_datum_id"
+  end
+
   create_table "subjects", force: :cascade do |t|
     t.string "name"
     t.integer "code"
@@ -52,7 +61,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_12_161445) do
 
   create_table "user_data", force: :cascade do |t|
     t.integer "user_id"
-    t.string "subject"
     t.integer "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -76,5 +84,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_12_161445) do
   add_foreign_key "access_tokens", "users"
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "subjects"
+  add_foreign_key "subject_user_data", "subjects"
+  add_foreign_key "subject_user_data", "user_data"
   add_foreign_key "user_data", "users"
 end
