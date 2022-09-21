@@ -1,0 +1,682 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/answers":
+    parameters:
+    - name: subject_id
+      in: query
+      description: subject_id
+      schema:
+        type: integer
+    - name: question_id
+      in: query
+      description: question_id
+      schema:
+        type: integer
+    get:
+      summary: Gets all answers
+      tags:
+      - Answers
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: Creates an answer
+      tags:
+      - Answers
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                answers:
+                  type: object
+                  properties:
+                    answer_no:
+                      type: integer
+                    value:
+                      type: string
+          application/xml:
+            schema:
+              type: object
+              properties:
+                answers:
+                  type: object
+                  properties:
+                    answer_no:
+                      type: integer
+                    value:
+                      type: string
+  "/api/v1/answers/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: shows answer
+      tags:
+      - Answers
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: updates answer
+      tags:
+      - Answers
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                answers:
+                  type: object
+                  properties:
+                    answer_no:
+                      type: integer
+                    value:
+                      type: string
+          application/xml:
+            schema:
+              type: object
+              properties:
+                answers:
+                  type: object
+                  properties:
+                    answer_no:
+                      type: integer
+                    value:
+                      type: string
+    put:
+      summary: updates answer
+      tags:
+      - Answers
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                answers:
+                  type: object
+                  properties:
+                    answer_no:
+                      type: integer
+                    value:
+                      type: string
+          application/xml:
+            schema:
+              type: object
+              properties:
+                answers:
+                  type: object
+                  properties:
+                    answer_no:
+                      type: integer
+                    value:
+                      type: string
+    delete:
+      summary: deletes answer
+      tags:
+      - Answers
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+  "/api/v1/questions":
+    parameters:
+    - name: subject_id
+      in: query
+      description: subject_id
+      schema:
+        type: integer
+    get:
+      summary: Gets all questions
+      tags:
+      - Questions
+      security:
+      - Bearer: []
+      parameters:
+      - name: year
+        in: query
+        description: year
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: Create a question
+      tags:
+      - Questions
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                questions:
+                  type: object
+                  properties:
+                    year:
+                      type: string
+                    question_no:
+                      type: integer
+                    content:
+                      type: string
+                    options:
+                      type: array
+                      items:
+                        type: string
+          application/xml:
+            schema:
+              type: object
+              properties:
+                questions:
+                  type: object
+                  properties:
+                    year:
+                      type: string
+                    question_no:
+                      type: integer
+                    content:
+                      type: string
+                    options:
+                      type: array
+                      items:
+                        type: string
+  "/api/v1/questions/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show question
+      tags:
+      - Questions
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update question
+      tags:
+      - Questions
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                questions:
+                  type: object
+                  properties:
+                    year:
+                      type: string
+                    question_no:
+                      type: integer
+                    content:
+                      type: string
+                    options:
+                      type: integer
+          application/xml:
+            schema:
+              type: object
+              properties:
+                questions:
+                  type: object
+                  properties:
+                    year:
+                      type: string
+                    question_no:
+                      type: integer
+                    content:
+                      type: string
+                    options:
+                      type: integer
+    put:
+      summary: update question
+      tags:
+      - Questions
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                questions:
+                  type: object
+                  properties:
+                    year:
+                      type: string
+                    question_no:
+                      type: integer
+                    content:
+                      type: string
+                    options:
+                      type: integer
+          application/xml:
+            schema:
+              type: object
+              properties:
+                questions:
+                  type: object
+                  properties:
+                    year:
+                      type: string
+                    question_no:
+                      type: integer
+                    content:
+                      type: string
+                    options:
+                      type: integer
+    delete:
+      summary: delete question
+      tags:
+      - Questions
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+  "/api/users":
+    post:
+      summary: Creates user with a token
+      tags:
+      - Signup / Register
+      parameters: []
+      responses:
+        '200':
+          description: user created with token
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+              required:
+              - username
+              - email
+              - password
+          application/xml:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+              required:
+              - username
+              - email
+              - password
+  "/api/users/sign_in":
+    post:
+      summary: Creates a user with a token
+      tags:
+      - Signin / Login
+      parameters: []
+      responses:
+        '200':
+          description: user signed in with token
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+              required:
+              - email
+              - password
+          application/xml:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+              required:
+              - email
+              - password
+  "/api/v1/subjects":
+    get:
+      summary: Gets all subjects
+      tags:
+      - Subjects
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: Create a subject
+      security:
+      - Bearer: []
+      tags:
+      - Subjects
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subjects:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    code:
+                      type: integer
+          application/xml:
+            schema:
+              type: object
+              properties:
+                subjects:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    code:
+                      type: integer
+  "/api/v1/subjects/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show subject
+      security:
+      - Bearer: []
+      tags:
+      - Subjects
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update subject
+      security:
+      - Bearer: []
+      tags:
+      - Subjects
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subjects:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    code:
+                      type: integer
+          application/xml:
+            schema:
+              type: object
+              properties:
+                subjects:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    code:
+                      type: integer
+    put:
+      summary: update subject
+      security:
+      - Bearer: []
+      tags:
+      - Subjects
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subjects:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    code:
+                      type: integer
+          application/xml:
+            schema:
+              type: object
+              properties:
+                subjects:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    code:
+                      type: integer
+    delete:
+      summary: delete subject
+      security:
+      - Bearer: []
+      tags:
+      - Subjects
+      responses:
+        '200':
+          description: successful
+  "/api/v1/users":
+    get:
+      summary: Gets all users
+      security:
+      - Bearer: []
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+  "/api/v1/users/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show user
+      security:
+      - Bearer: []
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update user
+      security:
+      - Bearer: []
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+          application/xml:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+    put:
+      summary: update user
+      tags:
+      - Users
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+          application/xml:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+    delete:
+      summary: delete user
+      security:
+      - Bearer: []
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
