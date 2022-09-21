@@ -11,7 +11,7 @@ class Api::V1::UserDataController < ApplicationController
   end
 
   def create
-    user_datum = UserDatum.new(user_datum_params).merge(user: @user)
+    user_datum = UserDatum.new(user_datum_params).merge(user: @user, subject: @subject)
     if user_datum.save!
       render json: user_datum, status: :ok
     else
@@ -44,7 +44,11 @@ class Api::V1::UserDataController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
+  def set_subject
+    @subject = Subject.find(params[:subject_id])
+  end
+
   def user_datum_params
-    params.require('user_data').permit(:subject, :score)
+    params.require('user_data').permit(:score)
   end
 end
