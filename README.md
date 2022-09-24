@@ -9,6 +9,12 @@
 - Ruby on Rails
 - PostgreSQL
 
+## Live Links
+  
+- [Passco app](https://passco-app-backend.herokuapp.com/)
+
+- [API Docs](https://passco-app-backend.herokuapp.com/api-docs/index.html)
+
 ## Getting Started
 To get a local copy up and running follow these simple example steps.
 
