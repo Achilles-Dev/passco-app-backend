@@ -676,7 +676,7 @@ components:
       scheme: bearer
       bearerFormat: JWT
 servers:
-- url: http://{defaultHost}
+- url: https://{defaultHost}
   variables:
     defaultHost:
-      default: localhost:3000
+      default: passco-app-backend.herokuapp.com/
