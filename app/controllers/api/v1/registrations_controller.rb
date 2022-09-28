@@ -1,17 +1,17 @@
 class Api::V1::RegistrationsController < Devise::RegistrationsController
   def create
-    user = User.new(sign_up_params)
+    @user = User.new(sign_up_params)
 
-    if user.save!
-      token = user.generate_jwt
-      access_token = AccessToken.new(token:, user:)
+    if @user.save!
+      @token = @user.generate_jwt
+      access_token = AccessToken.new(token: @token, user: @user)
       if access_token.save!
         render json: {
-          user:,
-          token:
+          user: @user,
+          token: @token
         }, status: :ok
       else
-        user.destroy
+        @user.destroy
         render json: { errors: 'User could not be registered' }, status: :unprocessable_entity
       end
     else
