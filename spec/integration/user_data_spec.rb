@@ -27,7 +27,7 @@ RSpec.describe 'Users', type: :request do
           user_data: {
             type: :object,
             properties: {
-              score: { type: :integer },
+              score: { type: :integer }
             }
           }
         }
@@ -74,7 +74,7 @@ RSpec.describe 'Users', type: :request do
           user_data: {
             type: :object,
             properties: {
-              score: { type: :integer },
+              score: { type: :integer }
             }
           }
         }
@@ -106,7 +106,7 @@ RSpec.describe 'Users', type: :request do
           user_data: {
             type: :object,
             properties: {
-              score: { type: :integer },
+              score: { type: :integer }
             }
           }
         }
