@@ -573,7 +573,17 @@ paths:
       - User Data
       security:
       - Bearer: []
-      parameters: []
+      parameters:
+      - name: subject_id
+        in: query
+        description: subject_id
+        schema:
+          type: integer
+      - name: user_id
+        in: query
+        description: user_id
+        schema:
+          type: integer
       responses:
         '200':
           description: successful
@@ -614,66 +624,6 @@ paths:
       responses:
         '200':
           description: successful
-    patch:
-      summary: update user_datum
-      security:
-      - Bearer: []
-      tags:
-      - User Data
-      parameters: []
-      responses:
-        '200':
-          description: successful
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                user_data:
-                  type: object
-                  properties:
-                    score:
-                      type: integer
-          application/xml:
-            schema:
-              type: object
-              properties:
-                user_data:
-                  type: object
-                  properties:
-                    score:
-                      type: integer
-    put:
-      summary: update user_datum
-      tags:
-      - User Data
-      security:
-      - Bearer: []
-      parameters: []
-      responses:
-        '200':
-          description: successful
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                user_data:
-                  type: object
-                  properties:
-                    score:
-                      type: integer
-          application/xml:
-            schema:
-              type: object
-              properties:
-                user_data:
-                  type: object
-                  properties:
-                    score:
-                      type: integer
     delete:
       summary: delete user_datum
       security:

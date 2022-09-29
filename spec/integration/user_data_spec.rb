@@ -21,6 +21,8 @@ RSpec.describe 'Users', type: :request do
       tags 'User Data'
       security [Bearer: []]
       consumes 'application/json', 'application/xml'
+      parameter name: :subject_id, in: :query, type: :integer, description: 'subject_id'
+      parameter name: :user_id, in: :query, type: :integer, description: 'user_id'
       parameter name: :user_data, in: :body, schema: {
         type: :object,
         properties: {
@@ -51,66 +53,6 @@ RSpec.describe 'Users', type: :request do
     get('show user_datum') do
       security [Bearer: []]
       tags 'User Data'
-      response(200, 'successful') do
-        let(:id) { '123' }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-
-    patch('update user_datum') do
-      security [Bearer: []]
-      tags 'User Data'
-      consumes 'application/json', 'application/xml'
-      parameter name: :user_data, in: :body, schema: {
-        type: :object,
-        properties: {
-          user_data: {
-            type: :object,
-            properties: {
-              score: { type: :integer }
-            }
-          }
-        }
-      }
-      response(200, 'successful') do
-        let(:id) { '123' }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-  end
-
-  path '/api/v1/user_data/{id}' do
-    parameter name: 'id', in: :path, type: :integer, description: 'id'
-
-    put('update user_datum') do
-      tags 'User Data'
-      security [Bearer: []]
-      consumes 'application/json', 'application/xml'
-      parameter name: :user_data, in: :body, schema: {
-        type: :object,
-        properties: {
-          user_data: {
-            type: :object,
-            properties: {
-              score: { type: :integer }
-            }
-          }
-        }
-      }
       response(200, 'successful') do
         let(:id) { '123' }
         after do |example|

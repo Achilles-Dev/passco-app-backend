@@ -1,5 +1,6 @@
 class Api::V1::UserDataController < ApplicationController
-  before_action :authenticate_user!, :set_user, only: [:create]
+  before_action :authenticate_user!,
+                :set_user, :set_subject, only: [:create]
 
   def index
     user_data = UserDatum.all
