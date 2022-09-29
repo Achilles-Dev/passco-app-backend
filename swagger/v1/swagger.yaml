@@ -557,6 +557,132 @@ paths:
       responses:
         '200':
           description: successful
+  "/api/v1/user_data":
+    get:
+      summary: Gets all user_data
+      security:
+      - Bearer: []
+      tags:
+      - User Data
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: Create a user_datum
+      tags:
+      - User Data
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_data:
+                  type: object
+                  properties:
+                    score:
+                      type: integer
+          application/xml:
+            schema:
+              type: object
+              properties:
+                user_data:
+                  type: object
+                  properties:
+                    score:
+                      type: integer
+  "/api/v1/user_data/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show user_datum
+      security:
+      - Bearer: []
+      tags:
+      - User Data
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update user_datum
+      security:
+      - Bearer: []
+      tags:
+      - User Data
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_data:
+                  type: object
+                  properties:
+                    score:
+                      type: integer
+          application/xml:
+            schema:
+              type: object
+              properties:
+                user_data:
+                  type: object
+                  properties:
+                    score:
+                      type: integer
+    put:
+      summary: update user_datum
+      tags:
+      - User Data
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_data:
+                  type: object
+                  properties:
+                    score:
+                      type: integer
+          application/xml:
+            schema:
+              type: object
+              properties:
+                user_data:
+                  type: object
+                  properties:
+                    score:
+                      type: integer
+    delete:
+      summary: delete user_datum
+      security:
+      - Bearer: []
+      tags:
+      - User Data
+      responses:
+        '200':
+          description: successful
   "/api/v1/users":
     get:
       summary: Gets all users
@@ -671,10 +797,11 @@ paths:
           description: successful
 components:
   securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+    Bearer:
+      description: Bearer Token
+      type: apiKey
+      name: Authorization
+      in: header
 servers:
 - url: https://{defaultHost}
   variables:
