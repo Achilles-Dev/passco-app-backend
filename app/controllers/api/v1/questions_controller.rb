@@ -2,7 +2,7 @@ class Api::V1::QuestionsController < ApplicationController
   before_action :authenticate_user!, :set_subject, only: %i[index create]
 
   def index
-    questions = Question.where(year: params[:year], subject: @subject)
+    questions = Question.where(year: params[:questions][:year], subject: @subject)
     render json: questions
   end
 
