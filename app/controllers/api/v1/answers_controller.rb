@@ -11,7 +11,7 @@ class Api::V1::AnswersController < ApplicationController
   end
 
   def create
-    answer = Answer.new(answer_params).merge(question: @question, subject: @subject, year: @question.year)
+    answer = Answer.new(answer_params).merge(question: @question, subject: @subject)
     if answer.save!
       render json: answer, status: :ok
     else
