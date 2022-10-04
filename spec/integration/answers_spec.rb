@@ -29,7 +29,6 @@ RSpec.describe 'Answers', type: :request do
           answers: {
             type: :object,
             properties: {
-              answer_no: { type: :integer },
               value: { type: :string }
             }
           }
@@ -77,7 +76,6 @@ RSpec.describe 'Answers', type: :request do
           answers: {
             type: :object,
             properties: {
-              answer_no: { type: :integer },
               value: { type: :string }
             }
           }
@@ -110,7 +108,6 @@ RSpec.describe 'Answers', type: :request do
           answers: {
             type: :object,
             properties: {
-              answer_no: { type: :integer },
               value: { type: :string }
             }
           }

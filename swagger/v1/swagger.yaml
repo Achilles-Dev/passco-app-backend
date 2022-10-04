@@ -44,8 +44,6 @@ paths:
                 answers:
                   type: object
                   properties:
-                    answer_no:
-                      type: integer
                     value:
                       type: string
           application/xml:
@@ -55,8 +53,6 @@ paths:
                 answers:
                   type: object
                   properties:
-                    answer_no:
-                      type: integer
                     value:
                       type: string
   "/api/v1/answers/{id}":
@@ -95,8 +91,6 @@ paths:
                 answers:
                   type: object
                   properties:
-                    answer_no:
-                      type: integer
                     value:
                       type: string
           application/xml:
@@ -106,8 +100,6 @@ paths:
                 answers:
                   type: object
                   properties:
-                    answer_no:
-                      type: integer
                     value:
                       type: string
     put:
@@ -129,8 +121,6 @@ paths:
                 answers:
                   type: object
                   properties:
-                    answer_no:
-                      type: integer
                     value:
                       type: string
           application/xml:
@@ -140,8 +130,6 @@ paths:
                 answers:
                   type: object
                   properties:
-                    answer_no:
-                      type: integer
                     value:
                       type: string
     delete:
