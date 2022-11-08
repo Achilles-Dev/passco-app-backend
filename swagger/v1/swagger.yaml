@@ -46,6 +46,8 @@ paths:
                   properties:
                     value:
                       type: string
+                    year:
+                      type: string
           application/xml:
             schema:
               type: object
@@ -54,6 +56,8 @@ paths:
                   type: object
                   properties:
                     value:
+                      type: string
+                    year:
                       type: string
   "/api/v1/answers/{id}":
     parameters:
@@ -93,6 +97,8 @@ paths:
                   properties:
                     value:
                       type: string
+                    year:
+                      type: string
           application/xml:
             schema:
               type: object
@@ -101,6 +107,8 @@ paths:
                   type: object
                   properties:
                     value:
+                      type: string
+                    year:
                       type: string
     put:
       summary: updates answer
@@ -123,6 +131,8 @@ paths:
                   properties:
                     value:
                       type: string
+                    year:
+                      type: string
           application/xml:
             schema:
               type: object
@@ -131,6 +141,8 @@ paths:
                   type: object
                   properties:
                     value:
+                      type: string
+                    year:
                       type: string
     delete:
       summary: deletes answer
