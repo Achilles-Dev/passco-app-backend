@@ -29,7 +29,8 @@ RSpec.describe 'Answers', type: :request do
           answers: {
             type: :object,
             properties: {
-              value: { type: :string }
+              value: { type: :string },
+              year: { type: :string }
             }
           }
         }
@@ -76,7 +77,8 @@ RSpec.describe 'Answers', type: :request do
           answers: {
             type: :object,
             properties: {
-              value: { type: :string }
+              value: { type: :string },
+              year: { type: :string }
             }
           }
         }
@@ -108,7 +110,8 @@ RSpec.describe 'Answers', type: :request do
           answers: {
             type: :object,
             properties: {
-              value: { type: :string }
+              value: { type: :string },
+              year: { type: :string }
             }
           }
         }
