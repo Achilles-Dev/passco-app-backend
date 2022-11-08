@@ -685,6 +685,8 @@ paths:
                       type: string
                     password:
                       type: string
+                    role:
+                      type: string
           application/xml:
             schema:
               type: object
@@ -697,6 +699,8 @@ paths:
                     email:
                       type: string
                     password:
+                      type: string
+                    role:
                       type: string
     put:
       summary: update user
@@ -723,6 +727,8 @@ paths:
                       type: string
                     password:
                       type: string
+                    role:
+                      type: string
           application/xml:
             schema:
               type: object
@@ -735,6 +741,8 @@ paths:
                     email:
                       type: string
                     password:
+                      type: string
+                    role:
                       type: string
     delete:
       summary: delete user

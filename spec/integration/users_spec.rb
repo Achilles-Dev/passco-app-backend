@@ -49,7 +49,8 @@ RSpec.describe 'Users', type: :request do
             properties: {
               username: { type: :string },
               email: { type: :string },
-              password: { type: :string }
+              password: { type: :string },
+              role: { type: :string }
             }
           }
         }
@@ -83,7 +84,8 @@ RSpec.describe 'Users', type: :request do
             properties: {
               username: { type: :string },
               email: { type: :string },
-              password: { type: :string }
+              password: { type: :string },
+              role: { type: :string }
             }
           }
         }
