@@ -2,7 +2,7 @@ class Api::V1::AnswersController < ApplicationController
   before_action :authenticate_user!, :set_question, :set_subject, only: %i[index create]
 
   def index
-    answers = Answer.find_by(question: @question, subject: @subject)
+    answers = Answer.find_by(params[:answers][:year], subject: @subject)
     render json: answers, status: :ok
   end
 
@@ -59,6 +59,6 @@ class Api::V1::AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require('answers').permit(:value)
+    params.require('answers').permit(:value, :year)
   end
 end
