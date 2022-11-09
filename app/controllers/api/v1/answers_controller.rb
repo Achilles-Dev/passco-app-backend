@@ -1,5 +1,6 @@
 class Api::V1::AnswersController < ApplicationController
-  before_action :authenticate_user!, :set_question, :set_subject, only: %i[index create]
+  before_action :authenticate_user!,
+                :set_question, :set_subject, only: %i[index create]
 
   def index
     answers = Answer.find_by(params[:answers][:year], subject: @subject)
@@ -11,7 +12,7 @@ class Api::V1::AnswersController < ApplicationController
   end
 
   def create
-    answer = Answer.new(answer_params).merge(question: @question, subject: @subject)
+    answer = Answer.new(answer_params.merge(question: @question, subject: @subject))
     if answer.save!
       render json: answer, status: :ok
     else
