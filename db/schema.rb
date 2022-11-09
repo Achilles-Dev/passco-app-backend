@@ -24,12 +24,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_233932) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "subject_id"
-    t.integer "question_id"
+    t.integer "answer_no"
     t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "year"
-    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["subject_id"], name: "index_answers_on_subject_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -84,7 +84,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_233932) do
   end
 
   add_foreign_key "access_tokens", "users"
-  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "subjects"
   add_foreign_key "questions", "subjects"
   add_foreign_key "subject_user_data", "subjects"
   add_foreign_key "subject_user_data", "user_data"
