@@ -1,6 +1,9 @@
 require 'swagger_helper'
 
-RSpec.describe 'Registration API' do
+RSpec.describe 'Registration API', type: :request do
+  before do
+    @user = User.new(username: 'Solomon', email: 'test@test.com', password: '123456').save!
+  end
   path '/api/users' do
     post 'Creates user with a token' do
       tags 'Signup / Register'
@@ -20,11 +23,9 @@ RSpec.describe 'Registration API' do
         required: %w[username email password]
       }
       response '200', 'user created with token' do
-        let(:sign_up) { { username: 'Solomon', email: 'test@test.com', password: '123456' } }
-        run_test!
-      end
-      response '422', 'invalid request' do
-        let(:sign_up) { '' }
+        let(:user) do
+          { user: { username: 'test', email: 'test3@test.com', password: '123456' } }
+        end
         run_test!
       end
     end
@@ -47,11 +48,9 @@ RSpec.describe 'Registration API' do
         required: %w[email password]
       }
       response '200', 'user signed in with token' do
-        let(:sign_in) { { username: 'Solomon', email: 'test@test.com', password: '123456' } }
-        run_test!
-      end
-      response '422', 'invalid request' do
-        let(:sign_in) { '' }
+        let(:user) do
+          { user: { email: 'test@test.com', password: '123456' } }
+        end
         run_test!
       end
     end
