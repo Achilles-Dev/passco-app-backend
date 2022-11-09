@@ -1,17 +1,15 @@
 require 'swagger_helper'
 
 RSpec.describe 'Answers', type: :request do
-  let(:Authorization) do
-    'Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjY5NTYyNDE0fQ.VaMUJJS4Sg1XofPnZq5F9H0O6_k0G82nUIjyY7Ij_M0'
-  end
-
   path '/api/v1/answers' do
     parameter name: 'subject_id', in: :query, type: :integer, description: 'subject_id'
     let(:subject_id) { 1 }
     get 'Gets all answers' do
       tags 'Answers'
       security [Bearer: []]
-      response(200, 'successful')
+      response(200, 'successful') do
+        run_test!
+      end
     end
 
     post 'Creates an answer' do
@@ -33,6 +31,7 @@ RSpec.describe 'Answers', type: :request do
         required: %w[value year answer_no]
       }
       response '201', 'successful' do
+        let(:Authorization) { `Bearer #{@token}` }
         let(:answers) do
           { answers:
             { value: 'A', year: '1993', answer_no: 1 } }
@@ -48,7 +47,9 @@ RSpec.describe 'Answers', type: :request do
     get 'shows answer' do
       tags 'Answers'
       security [Bearer: []]
-      response(200, 'successful')
+      response(200, 'successful') do
+        run_test!
+      end
     end
 
     patch 'updates answer' do
@@ -68,7 +69,7 @@ RSpec.describe 'Answers', type: :request do
           }
         }
       }
-      response(200, 'successful') do
+      response(204, 'successful') do
         let(:id) { '123' }
         after do |example|
           example.metadata[:response][:content] = {
@@ -102,7 +103,7 @@ RSpec.describe 'Answers', type: :request do
           }
         }
       }
-      response(200, 'successful') do
+      response(204, 'successful') do
         let(:id) { '123' }
         after do |example|
           example.metadata[:response][:content] = {
@@ -118,7 +119,9 @@ RSpec.describe 'Answers', type: :request do
     delete 'deletes answer' do
       tags 'Answers'
       security [Bearer: []]
-      response(200, 'successful')
+      response(204, 'successful') do
+        run_test!
+      end
     end
   end
 end

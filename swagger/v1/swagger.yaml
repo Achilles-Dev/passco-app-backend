@@ -11,11 +11,6 @@ paths:
       description: subject_id
       schema:
         type: integer
-    - name: question_id
-      in: query
-      description: question_id
-      schema:
-        type: integer
     get:
       summary: Gets all answers
       tags:
@@ -33,7 +28,7 @@ paths:
       - Bearer: []
       parameters: []
       responses:
-        '200':
+        '201':
           description: successful
       requestBody:
         content:
@@ -48,6 +43,12 @@ paths:
                       type: string
                     year:
                       type: string
+                    answer_no:
+                      type: integer
+              required:
+              - value
+              - year
+              - answer_no
           application/xml:
             schema:
               type: object
@@ -59,6 +60,12 @@ paths:
                       type: string
                     year:
                       type: string
+                    answer_no:
+                      type: integer
+              required:
+              - value
+              - year
+              - answer_no
   "/api/v1/answers/{id}":
     parameters:
     - name: id
@@ -84,7 +91,7 @@ paths:
       - Bearer: []
       parameters: []
       responses:
-        '200':
+        '204':
           description: successful
       requestBody:
         content:
@@ -99,6 +106,8 @@ paths:
                       type: string
                     year:
                       type: string
+                    answer_no:
+                      type: integer
           application/xml:
             schema:
               type: object
@@ -110,6 +119,8 @@ paths:
                       type: string
                     year:
                       type: string
+                    answer_no:
+                      type: integer
     put:
       summary: updates answer
       tags:
@@ -118,7 +129,7 @@ paths:
       - Bearer: []
       parameters: []
       responses:
-        '200':
+        '204':
           description: successful
       requestBody:
         content:
@@ -133,6 +144,8 @@ paths:
                       type: string
                     year:
                       type: string
+                    answer_no:
+                      type: integer
           application/xml:
             schema:
               type: object
@@ -144,6 +157,8 @@ paths:
                       type: string
                     year:
                       type: string
+                    answer_no:
+                      type: integer
     delete:
       summary: deletes answer
       tags:
@@ -151,7 +166,7 @@ paths:
       security:
       - Bearer: []
       responses:
-        '200':
+        '204':
           description: successful
   "/api/v1/questions":
     parameters:
@@ -340,8 +355,6 @@ paths:
       responses:
         '200':
           description: user created with token
-        '422':
-          description: invalid request
       requestBody:
         content:
           application/json:
@@ -387,8 +400,6 @@ paths:
       responses:
         '200':
           description: user signed in with token
-        '422':
-          description: invalid request
       requestBody:
         content:
           application/json:
