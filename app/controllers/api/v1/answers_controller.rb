@@ -3,7 +3,7 @@ class Api::V1::AnswersController < ApplicationController
                 :set_subject, only: %i[index create]
 
   def index
-    answers = Answer.find_by(year: params[:year], subject: @subject)
+    answers = Answer.where(year: params[:year], subject: @subject)
     render json: answers, status: :ok
   end
 
