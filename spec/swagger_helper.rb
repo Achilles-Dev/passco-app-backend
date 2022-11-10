@@ -32,10 +32,10 @@ RSpec.configure do |config|
       },
       servers: [
         {
-          url: 'https://{defaultHost}',
+          url: 'http://{defaultHost}',
           variables: {
             defaultHost: {
-              default: 'passco-app-backend.herokuapp.com/'
+              default: 'localhost:3000/'
             }
           }
         }

@@ -11,7 +11,7 @@ class Api::V1::QuestionsController < ApplicationController
   end
 
   def create
-    question = Question.new(question_params.merge(subject: @subject))
+    question = Question.new(question_params.merge(subject: @subject, year: params[:year]))
     if question.save!
       render json: question, status: :ok
     else
@@ -55,6 +55,6 @@ class Api::V1::QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require('questions').permit(:year, :question_no, :content, options: [])
+    params.require('questions').permit(:question_no, :content, options: [])
   end
 end

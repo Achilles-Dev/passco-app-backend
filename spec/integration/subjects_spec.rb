@@ -6,13 +6,6 @@ RSpec.describe 'Subject', type: :request do
       tags 'Subjects'
       security [Bearer: []]
       response(200, 'successful') do
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
         run_test!
       end
     end
@@ -33,13 +26,12 @@ RSpec.describe 'Subject', type: :request do
           }
         }
       }
-      response(200, 'successful') do
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
+      response(201, 'successful') do
+        after do
+          let(:subjects) do
+            { subjects:
+              { name: 'Social Studies', code: 302 } }
+          end
         end
         run_test!
       end
@@ -48,19 +40,11 @@ RSpec.describe 'Subject', type: :request do
 
   path '/api/v1/subjects/{id}' do
     parameter name: 'id', in: :path, type: :integer, description: 'id'
-
+    let(:id) { '123' }
     get('show subject') do
       security [Bearer: []]
       tags 'Subjects'
       response(200, 'successful') do
-        let(:id) { '123' }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
         run_test!
       end
     end
@@ -81,14 +65,12 @@ RSpec.describe 'Subject', type: :request do
           }
         }
       }
-      response(200, 'successful') do
-        let(:id) { '123' }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
+      response(204, 'successful') do
+        after do
+          let(:subjects) do
+            { subjects:
+              { name: 'Social Studies', code: 302 } }
+          end
         end
         run_test!
       end
@@ -97,7 +79,7 @@ RSpec.describe 'Subject', type: :request do
 
   path '/api/v1/subjects/{id}' do
     parameter name: 'id', in: :path, type: :integer, description: 'id'
-
+    let(:id) { '123' }
     put('update subject') do
       security [Bearer: []]
       tags 'Subjects'
@@ -114,14 +96,12 @@ RSpec.describe 'Subject', type: :request do
           }
         }
       }
-      response(200, 'successful') do
-        let(:id) { '123' }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
+      response(204, 'successful') do
+        after do
+          let(:subjects) do
+            { subjects:
+              { name: 'Social Studies', code: 302 } }
+          end
         end
         run_test!
       end
@@ -130,15 +110,7 @@ RSpec.describe 'Subject', type: :request do
     delete('delete subject') do
       security [Bearer: []]
       tags 'Subjects'
-      response(200, 'successful') do
-        let(:id) { '123' }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+      response(204, 'successful') do
         run_test!
       end
     end

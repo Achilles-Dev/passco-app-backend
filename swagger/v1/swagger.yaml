@@ -11,6 +11,11 @@ paths:
       description: subject_id
       schema:
         type: integer
+    - name: year
+      in: query
+      description: year
+      schema:
+        type: integer
     get:
       summary: Gets all answers
       tags:
@@ -41,8 +46,6 @@ paths:
                   properties:
                     value:
                       type: string
-                    year:
-                      type: string
                     answer_no:
                       type: integer
               required:
@@ -57,8 +60,6 @@ paths:
                   type: object
                   properties:
                     value:
-                      type: string
-                    year:
                       type: string
                     answer_no:
                       type: integer
@@ -104,8 +105,6 @@ paths:
                   properties:
                     value:
                       type: string
-                    year:
-                      type: string
                     answer_no:
                       type: integer
           application/xml:
@@ -116,8 +115,6 @@ paths:
                   type: object
                   properties:
                     value:
-                      type: string
-                    year:
                       type: string
                     answer_no:
                       type: integer
@@ -142,8 +139,6 @@ paths:
                   properties:
                     value:
                       type: string
-                    year:
-                      type: string
                     answer_no:
                       type: integer
           application/xml:
@@ -154,8 +149,6 @@ paths:
                   type: object
                   properties:
                     value:
-                      type: string
-                    year:
                       type: string
                     answer_no:
                       type: integer
@@ -175,18 +168,17 @@ paths:
       description: subject_id
       schema:
         type: integer
+    - name: year
+      in: query
+      description: year
+      schema:
+        type: integer
     get:
       summary: Gets all questions
       tags:
       - Questions
       security:
       - Bearer: []
-      parameters:
-      - name: year
-        in: query
-        description: year
-        schema:
-          type: integer
       responses:
         '200':
           description: successful
@@ -198,7 +190,7 @@ paths:
       - Bearer: []
       parameters: []
       responses:
-        '200':
+        '201':
           description: successful
       requestBody:
         content:
@@ -209,8 +201,6 @@ paths:
                 questions:
                   type: object
                   properties:
-                    year:
-                      type: string
                     question_no:
                       type: integer
                     content:
@@ -226,8 +216,6 @@ paths:
                 questions:
                   type: object
                   properties:
-                    year:
-                      type: string
                     question_no:
                       type: integer
                     content:
@@ -261,7 +249,7 @@ paths:
       - Bearer: []
       parameters: []
       responses:
-        '200':
+        '204':
           description: successful
       requestBody:
         content:
@@ -272,8 +260,6 @@ paths:
                 questions:
                   type: object
                   properties:
-                    year:
-                      type: string
                     question_no:
                       type: integer
                     content:
@@ -287,8 +273,6 @@ paths:
                 questions:
                   type: object
                   properties:
-                    year:
-                      type: string
                     question_no:
                       type: integer
                     content:
@@ -303,7 +287,7 @@ paths:
       - Bearer: []
       parameters: []
       responses:
-        '200':
+        '204':
           description: successful
       requestBody:
         content:
@@ -314,8 +298,6 @@ paths:
                 questions:
                   type: object
                   properties:
-                    year:
-                      type: string
                     question_no:
                       type: integer
                     content:
@@ -329,8 +311,6 @@ paths:
                 questions:
                   type: object
                   properties:
-                    year:
-                      type: string
                     question_no:
                       type: integer
                     content:
@@ -344,7 +324,7 @@ paths:
       security:
       - Bearer: []
       responses:
-        '200':
+        '204':
           description: successful
   "/api/users":
     post:
@@ -448,7 +428,7 @@ paths:
       - Subjects
       parameters: []
       responses:
-        '200':
+        '201':
           description: successful
       requestBody:
         content:
@@ -499,7 +479,7 @@ paths:
       - Subjects
       parameters: []
       responses:
-        '200':
+        '204':
           description: successful
       requestBody:
         content:
@@ -533,7 +513,7 @@ paths:
       - Subjects
       parameters: []
       responses:
-        '200':
+        '204':
           description: successful
       requestBody:
         content:
@@ -566,7 +546,7 @@ paths:
       tags:
       - Subjects
       responses:
-        '200':
+        '204':
           description: successful
   "/api/v1/user_data":
     get:
@@ -596,7 +576,7 @@ paths:
         schema:
           type: integer
       responses:
-        '200':
+        '201':
           description: successful
       requestBody:
         content:
@@ -642,7 +622,7 @@ paths:
       tags:
       - User Data
       responses:
-        '200':
+        '204':
           description: successful
   "/api/v1/users":
     get:
@@ -772,7 +752,7 @@ components:
       name: Authorization
       in: header
 servers:
-- url: https://{defaultHost}
+- url: http://{defaultHost}
   variables:
     defaultHost:
-      default: passco-app-backend.herokuapp.com/
+      default: localhost:3000/

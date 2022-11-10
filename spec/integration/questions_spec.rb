@@ -3,19 +3,13 @@ require 'swagger_helper'
 RSpec.describe 'Questions', type: :request do
   path '/api/v1/questions' do
     parameter name: 'subject_id', in: :query, type: :integer, description: 'subject_id'
-
+    parameter name: 'year', in: :query, type: :integer, description: 'year'
+    let(:subject_id) { 1 }
+    let(:year) { 1990 }
     get 'Gets all questions' do
       tags 'Questions'
       security [Bearer: []]
-      parameter name: 'year', in: :query, type: :integer, description: 'year'
       response(200, 'successful') do
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
         run_test!
       end
     end
@@ -30,7 +24,6 @@ RSpec.describe 'Questions', type: :request do
           questions: {
             type: :object,
             properties: {
-              year: { type: :string },
               question_no: { type: :integer },
               content: { type: :string },
               options: { type: :array,
@@ -41,13 +34,12 @@ RSpec.describe 'Questions', type: :request do
           }
         }
       }
-      response(200, 'successful') do
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
+      response(201, 'successful') do
+        after do
+          let(:questions) do
+            { questions:
+              { content: '', value: 'A', question_no: 1, options: %w[true false] } }
+          end
         end
         run_test!
       end
@@ -56,19 +48,11 @@ RSpec.describe 'Questions', type: :request do
 
   path '/api/v1/questions/{id}' do
     parameter name: 'id', in: :path, type: :integer, description: 'id'
-
+    let(:id) { '123' }
     get 'show question' do
       tags 'Questions'
       security [Bearer: []]
       response(200, 'successful') do
-        let(:id) { '123' }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
         run_test!
       end
     end
@@ -83,7 +67,6 @@ RSpec.describe 'Questions', type: :request do
           questions: {
             type: :object,
             properties: {
-              year: { type: :string },
               question_no: { type: :integer },
               content: { type: :string },
               options: { type: :integer }
@@ -91,14 +74,12 @@ RSpec.describe 'Questions', type: :request do
           }
         }
       }
-      response(200, 'successful') do
-        let(:id) { '123' }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
+      response(204, 'successful') do
+        after do
+          let(:questions) do
+            { questions:
+              { content: '', value: 'A', question_no: 1, options: %w[true false] } }
+          end
         end
         run_test!
       end
@@ -107,7 +88,7 @@ RSpec.describe 'Questions', type: :request do
 
   path '/api/v1/questions/{id}' do
     parameter name: 'id', in: :path, type: :integer, description: 'id'
-
+    let(:id) { '123' }
     put 'update question' do
       tags 'Questions'
       security [Bearer: []]
@@ -118,7 +99,6 @@ RSpec.describe 'Questions', type: :request do
           questions: {
             type: :object,
             properties: {
-              year: { type: :string },
               question_no: { type: :integer },
               content: { type: :string },
               options: { type: :integer }
@@ -126,14 +106,12 @@ RSpec.describe 'Questions', type: :request do
           }
         }
       }
-      response(200, 'successful') do
-        let(:id) { '123' }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
+      response(204, 'successful') do
+        after do
+          let(:questions) do
+            { questions:
+              { content: '', value: 'A', question_no: 1, options: %w[true false] } }
+          end
         end
         run_test!
       end
@@ -142,15 +120,7 @@ RSpec.describe 'Questions', type: :request do
     delete 'delete question' do
       tags 'Questions'
       security [Bearer: []]
-      response(200, 'successful') do
-        let(:id) { '123' }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+      response(204, 'successful') do
         run_test!
       end
     end

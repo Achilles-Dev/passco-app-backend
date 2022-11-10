@@ -3,7 +3,7 @@ class Api::V1::AnswersController < ApplicationController
                 :set_subject, only: %i[index create]
 
   def index
-    answers = Answer.find_by(params[:answers][:year], subject: @subject)
+    answers = Answer.find_by(params[:year], subject: @subject)
     render json: answers, status: :ok
   end
 
@@ -12,7 +12,7 @@ class Api::V1::AnswersController < ApplicationController
   end
 
   def create
-    answer = Answer.new(answer_params.merge(subject: @subject))
+    answer = Answer.new(answer_params.merge(subject: @subject, year: params[:year]))
     if answer.save!
       render json: answer, status: :ok
     else
@@ -56,6 +56,6 @@ class Api::V1::AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require('answers').permit(:value, :year, :answer_no)
+    params.require('answers').permit(:value, :answer_no)
   end
 end
