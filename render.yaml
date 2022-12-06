@@ -2,12 +2,11 @@
 # https://www.npmjs.com/package/@renderinc/heroku-import
 # Schema documented at https://render.com/docs/yaml-spec
 services:
-  - type: web # valid values: https://render.com/docs/yaml-spec#type
-    name: passco-app-backend
-    env: docker # valid values: https://render.com/docs/yaml-spec#environment
-    dockerfilePath: Dockerfile.render
-    plan: free # optional; defaults to starter
-    numInstances: 0
+  - name: passco-app-backend
+    type: web # valid values: https://render.com/docs/yaml-spec#type
+    env: ruby
+    buildCommand: bin/render-build.sh
+    startCommand: bundle exec puma -C config/puma.rb
     envVars:
       - key: LANG # Imported from Heroku app
         value: en_US.UTF-8
@@ -19,10 +18,21 @@ services:
         value: enabled
       - key: RAILS_SERVE_STATIC_FILES # Imported from Heroku app
         value: enabled
+      - key: SECRET_KEY_BASE
+        generateValue: true
       - key: DATABASE_URL # Render PostgreSQL database
         fromDatabase:
           name: postgresql-rugged-34827
           property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: passco-app-backend-redis
+          type: redis
+          property: connectionString
+
+  - name: passco-app-backend-redis
+    type: redis
+    ipAllowList: [] # only allow connections from services in this Render account
 
 databases: # Render PostgreSQL database
   - name: postgresql-rugged-34827
