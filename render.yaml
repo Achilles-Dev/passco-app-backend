@@ -24,15 +24,6 @@ services:
         fromDatabase:
           name: postgresql-rugged-34827
           property: connectionString
-      - key: REDIS_URL
-        fromService:
-          name: passco-app-backend-redis
-          type: redis
-          property: connectionString
-
-  - name: passco-app-backend-redis
-    type: redis
-    ipAllowList: [] # only allow connections from services in this Render account
 
 databases: # Render PostgreSQL database
   - name: postgresql-rugged-34827
