@@ -4,7 +4,7 @@
 services:
   - type: web # valid values: https://render.com/docs/yaml-spec#type
     name: passco-app-backend
-   env: ruby # valid values: https://render.com/docs/yaml-spec#environment
+    env: ruby # valid values: https://render.com/docs/yaml-spec#environment
     buildCommand: bin/render-build.sh
     startCommand: bundle exec puma -C config/puma.rb
     plan: free # optional; defaults to starter
@@ -19,3 +19,4 @@ services:
 databases: # Render PostgreSQL database
   - name: postgresql-rugged-34827
     ipAllowList: [] # only allow internal connections
+    plan: free
